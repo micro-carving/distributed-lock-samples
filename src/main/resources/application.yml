@@ -1,0 +1,29 @@
+server:
+  port: 10010
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/distributed_lock_samples?allowMultiQueries=true&useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&nullCatalogMeansCurrent=true
+    username: root
+    password: root
+
+
+# mp相关配置
+mybatis-plus:
+  configuration:
+    # 日志实现类，这里选择ibatis的标准日志输出实现类
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 配置mapper的xml扫描路径
+  mapper-locations:
+    - classpath*:/com/olinonee/framework/lock/mapper/*.xml
+
+  # 全局配置
+  global-config:
+    # 数据库配置
+    db-config:
+      # 配置 MyBatis-Plus 操作表的默认前缀
+      table-prefix: tb_
+      # 配置 MyBatis-Plus 的主键策略为自增策略，默认策略为assign_id
+      # 注意：配置自增策略类型，请确保数据库设置了 ID自增 否则无效并报异常
+      id-type: auto
