@@ -10,32 +10,32 @@ package com.olinonee.framework.lock.service;
 public interface ISinglePatternStockService {
 
     /**
-     * 减库存，未使用锁的情况
+     * 减库存（超卖问题），未使用锁的情况
      */
     void deductWithoutLock();
 
     /**
-     * 减库存，使用 synchronized 锁
+     * 减库存（超卖问题），使用 synchronized 锁
      */
     void deductWithSynchronizedLock();
 
     /**
-     * 减库存，使用 ReentrantLock 锁
+     * 减库存（超卖问题），使用 ReentrantLock 锁
      */
     void deductWithReentrantLock();
 
     /**
-     * 减库存，基于 MySQL 数据库，未使用锁情况
+     * 减库存（超卖问题），基于 MySQL 数据库，未使用锁情况
      */
     void baseMysqlDeductWithoutLock();
 
     /**
-     * 减库存，基于 MySQL 数据库，使用 synchronized 锁
+     * 减库存（超卖问题），基于 MySQL 数据库，使用 synchronized 锁
      */
-    void baseMysqlDeductSynchronizedLock();
+    void baseMysqlDeductWithSynchronizedLock();
 
     /**
-     * 减库存，基于 MySQL 数据库，使用 ReentrantLock 锁
+     * 减库存（超卖问题），基于 MySQL 数据库，使用 ReentrantLock 锁
      */
     void baseMysqlDeductWithReentrantLock();
 }

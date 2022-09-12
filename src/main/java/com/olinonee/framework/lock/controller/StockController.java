@@ -1,6 +1,7 @@
 package com.olinonee.framework.lock.controller;
 
 import com.olinonee.framework.lock.service.IPrototypePatternStockService;
+import com.olinonee.framework.lock.service.ITransactionalStockService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,43 +19,56 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/stock")
 public class StockController {
 
-    // private ISinglePatternStockService singlePatternStockService;
-    private IPrototypePatternStockService singlePatternStockService;
+    // private ISinglePatternStockService stockService;
+    private IPrototypePatternStockService stockService;
+    private ITransactionalStockService transactionalStockService;
 
 
     @GetMapping("/deductWithoutLock")
     public String deductWithoutLock() {
-        this.singlePatternStockService.deductWithoutLock();
+        this.stockService.deductWithoutLock();
         return "[deductWithoutLock] - 已经成功执行减库存！！";
     }
 
     @GetMapping("/deductWithSynchronizedLock")
     public String deductWithSynchronizedLock() {
-        this.singlePatternStockService.deductWithSynchronizedLock();
+        this.stockService.deductWithSynchronizedLock();
         return "[deductWithSynchronizedLock] - 已经成功执行减库存！！";
     }
 
     @GetMapping("/deductWithReentrantLock")
     public String deductWithReentrantLock() {
-        this.singlePatternStockService.deductWithReentrantLock();
+        this.stockService.deductWithReentrantLock();
         return "[deductWithReentrantLock] - 已经成功执行减库存！！";
     }
 
     @GetMapping("/baseMysqlDeductWithoutLock")
     public String baseMysqlDeductWithoutLock() {
-        this.singlePatternStockService.baseMysqlDeductWithoutLock();
+        this.stockService.baseMysqlDeductWithoutLock();
         return "[baseMysqlDeductWithoutLock] - 已经成功执行减库存！！";
     }
 
-    @GetMapping("/baseMysqlDeductSynchronizedLock")
-    public String baseMysqlDeductSynchronizedLock() {
-        this.singlePatternStockService.baseMysqlDeductSynchronizedLock();
-        return "[baseMysqlDeductSynchronizedLock] - 已经成功执行减库存！！";
+    @GetMapping("/baseMysqlDeductWithSynchronizedLock")
+    public String baseMysqlDeductWithSynchronizedLock() {
+        this.stockService.baseMysqlDeductWithSynchronizedLock();
+        return "[baseMysqlDeductWithSynchronizedLock] - 已经成功执行减库存！！";
     }
 
     @GetMapping("/baseMysqlDeductWithReentrantLock")
     public String baseMysqlDeductWithReentrantLock() {
-        this.singlePatternStockService.baseMysqlDeductWithReentrantLock();
+        this.stockService.baseMysqlDeductWithReentrantLock();
         return "[baseMysqlDeductWithReentrantLock] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/transactionalBaseMysqlDeductWithSynchronizedLock")
+    public String transactionalBaseMysqlDeductWithSynchronizedLock() {
+        this.transactionalStockService.baseMysqlDeductWithSynchronizedLock();
+        return "[transactionalBaseMysqlDeductWithSynchronizedLock] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/transactionalBaseMysqlDeductWithReentrantLock")
+    public String transactionalBaseMysqlDeductWithReentrantLock() {
+        this.transactionalStockService.baseMysqlDeductWithReentrantLock();
+        return "[transactionalBaseMysqlDeductWithReentrantLock] - 已经成功执行减库存！！";
     }
 }

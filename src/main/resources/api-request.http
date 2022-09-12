@@ -15,9 +15,17 @@ GET http://localhost:10010/stock/baseMysqlDeductWithoutLock
 Accept: application/json
 
 ### GET 减库存请求，基于 MySQL 数据库，使用 synchronized 锁
-GET http://localhost:10010/stock/baseMysqlDeductSynchronizedLock
+GET http://localhost:10010/stock/baseMysqlDeductWithSynchronizedLock
 Accept: application/json
 
 ### GET 减库存请求，基于 MySQL 数据库，使用 ReentrantLock 锁
 GET http://localhost:10010/stock/baseMysqlDeductWithReentrantLock
+Accept: application/json
+
+### GET 减库存请求，基于 MySQL 数据库，使用 事务 + synchronized 锁
+GET http://localhost:10010/stock/transactionalBaseMysqlDeductWithSynchronizedLock
+Accept: application/json
+
+### GET 减库存请求，基于 MySQL 数据库，使用 事务 + Reentrant 锁
+GET http://localhost:10010/stock/transactionalBaseMysqlDeductWithReentrantLock
 Accept: application/json

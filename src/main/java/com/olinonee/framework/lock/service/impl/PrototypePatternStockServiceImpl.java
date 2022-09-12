@@ -40,7 +40,7 @@ public class PrototypePatternStockServiceImpl implements IPrototypePatternStockS
 
 
     /**
-     * 减库存，未使用锁的情况，经过使用 JMeter 测试（100用户，循环50次，测试并发量 3494/sec），会出现超卖问题（理想已售完，但实际库存还有）
+     * 减库存（超卖问题），未使用锁的情况，经过使用 JMeter 测试（100用户，循环50次，测试并发量 3494/sec），会出现超卖问题（理想已售完，但实际库存还有）
      */
     @Override
     public void deductWithoutLock() {
@@ -49,7 +49,7 @@ public class PrototypePatternStockServiceImpl implements IPrototypePatternStockS
     }
 
     /**
-     * 减库存，使用 synchronized 锁，多例模式下，此方式会失效
+     * 减库存（超卖问题），使用 synchronized 锁，多例模式下，此方式会失效
      */
     @Override
     public synchronized void deductWithSynchronizedLock() {
@@ -58,7 +58,7 @@ public class PrototypePatternStockServiceImpl implements IPrototypePatternStockS
     }
 
     /**
-     * 减库存，使用 ReentrantLock 锁，多例模式下，此方式会失效
+     * 减库存（超卖问题），使用 ReentrantLock 锁，多例模式下，此方式会失效
      */
     @Override
     public void deductWithReentrantLock() {
@@ -72,7 +72,7 @@ public class PrototypePatternStockServiceImpl implements IPrototypePatternStockS
     }
 
     /**
-     * 减库存，基于 MySQL 数据库，未使用锁情况，经过使用 JMeter 测试（100用户，循环50次，测试并发量 1193.602/sec），会出现超卖问题（理想已售完，但实际库存还有）
+     * 减库存（超卖问题），基于 MySQL 数据库，未使用锁情况，经过使用 JMeter 测试（100用户，循环50次，测试并发量 1193.602/sec），会出现超卖问题（理想已售完，但实际库存还有）
      */
     @Override
     public void baseMysqlDeductWithoutLock() {
@@ -88,23 +88,23 @@ public class PrototypePatternStockServiceImpl implements IPrototypePatternStockS
     }
 
     /**
-     * 减库存，基于 MySQL 数据库，使用 synchronized 锁，QPS为 496.968/sec，多例模式下，此方式会失效
+     * 减库存（超卖问题），基于 MySQL 数据库，使用 synchronized 锁，QPS为 496.968/sec，多例模式下，此方式会失效
      */
     @Override
-    public synchronized void baseMysqlDeductSynchronizedLock() {
+    public synchronized void baseMysqlDeductWithSynchronizedLock() {
         LambdaQueryWrapper<Stock> stockLambdaQueryWrapper = new LambdaQueryWrapper<>();
         stockLambdaQueryWrapper.eq(Stock::getProductCode, "1001");
         final Stock stk = this.stockMapper.selectOne(stockLambdaQueryWrapper);
 
         if (null != stk && stk.getCount() > 0) {
             stk.setCount(stk.getCount() - 1);
-            log.info("[PrototypePatternStockServiceImpl#baseMysqlDeductSynchronizedLock] - 库存余量为：{}", stk.getCount());
+            log.info("[PrototypePatternStockServiceImpl#baseMysqlDeductWithSynchronizedLock] - 库存余量为：{}", stk.getCount());
             this.stockMapper.updateById(stk);
         }
     }
 
     /**
-     * 减库存，基于 MySQL 数据库，使用 ReentrantLock 锁，QPS为 496.574/sec，多例模式下，此方式会失效
+     * 减库存（超卖问题），基于 MySQL 数据库，使用 ReentrantLock 锁，QPS为 496.574/sec，多例模式下，此方式会失效
      */
     @Override
     public void baseMysqlDeductWithReentrantLock() {
