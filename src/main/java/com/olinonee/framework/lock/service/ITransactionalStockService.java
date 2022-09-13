@@ -1,7 +1,7 @@
 package com.olinonee.framework.lock.service;
 
 /**
- * 库存业务 接口
+ * 库存业务 接口（事务模式）
  *
  * @author olinH, olinone666@gmail.com
  * @version v1.0.0

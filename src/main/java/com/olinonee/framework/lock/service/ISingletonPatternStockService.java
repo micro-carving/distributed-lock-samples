@@ -1,13 +1,13 @@
 package com.olinonee.framework.lock.service;
 
 /**
- * 库存业务 接口
+ * 库存业务 接口（单例模式）
  *
  * @author olinH, olinone666@gmail.com
  * @version v1.0.0
  * @since 2022-09-09
  */
-public interface ISinglePatternStockService {
+public interface ISingletonPatternStockService {
 
     /**
      * 减库存（超卖问题），未使用锁的情况

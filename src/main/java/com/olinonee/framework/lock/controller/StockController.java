@@ -1,7 +1,6 @@
 package com.olinonee.framework.lock.controller;
 
-import com.olinonee.framework.lock.service.IPrototypePatternStockService;
-import com.olinonee.framework.lock.service.ITransactionalStockService;
+import com.olinonee.framework.lock.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/stock")
 public class StockController {
 
-    // private ISinglePatternStockService stockService;
-    private IPrototypePatternStockService stockService;
-    private ITransactionalStockService transactionalStockService;
+    private final ISingletonPatternStockService stockService; // 单例
+    // private final IPrototypePatternStockService stockService; // 多例
+    private final ITransactionalStockService transactionalStockService; // 事务
+    private final ISingletonPatternDbLockStockService singletonPatternDbLockStockService; // 单例数据库锁
+    private final IPrototypePatternDbLockStockService prototypePatternDbLockStockService; // 多例数据库锁
+    private final ITransactionalDbLockStockService transactionalDbLockStockService; // 事务数据库锁
 
 
     @GetMapping("/deductWithoutLock")
@@ -70,5 +72,23 @@ public class StockController {
     public String transactionalBaseMysqlDeductWithReentrantLock() {
         this.transactionalStockService.baseMysqlDeductWithReentrantLock();
         return "[transactionalBaseMysqlDeductWithReentrantLock] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/mysqlSingletonPatternDbLock")
+    public String mysqlSingletonPatternDbLock() {
+        this.singletonPatternDbLockStockService.deductWithDbLock();
+        return "[mysqlSingletonPatternDbLock] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/mysqlPrototypePatternDbLock")
+    public String mysqlPrototypePatternDbLock() {
+        this.prototypePatternDbLockStockService.deductWithDbLock();
+        return "[mysqlPrototypePatternDbLock] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/mysqlTransactionalDbLock")
+    public String mysqlTransactionalDbLock() {
+        this.transactionalDbLockStockService.deductWithDbLock();
+        return "[mysqlTransactionalDbLock] - 已经成功执行减库存！！";
     }
 }

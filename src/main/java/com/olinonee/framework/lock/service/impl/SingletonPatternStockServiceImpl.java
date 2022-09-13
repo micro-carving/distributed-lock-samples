@@ -3,7 +3,7 @@ package com.olinonee.framework.lock.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.olinonee.framework.lock.entity.Stock;
 import com.olinonee.framework.lock.mapper.StockMapper;
-import com.olinonee.framework.lock.service.ISinglePatternStockService;
+import com.olinonee.framework.lock.service.ISingletonPatternStockService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 /**
- * 库存业务 接口实现类
+ * 库存业务 接口实现类（单例模式）
  * （单例模式，spring 初始化 bean 默认使用的是单例模式，可以使用 @Scope 注解加以区分，也可以不用加，这里为了区分多例，加上了【有点画蛇添足的感觉】）
  *
  * @author olinH, olinone666@gmail.com
@@ -25,7 +25,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 @AllArgsConstructor
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class SinglePatternStockServiceImpl implements ISinglePatternStockService {
+public class SingletonPatternStockServiceImpl implements ISingletonPatternStockService {
 
     private final Stock stock = new Stock();
     private final int total = stock.getStockNum();

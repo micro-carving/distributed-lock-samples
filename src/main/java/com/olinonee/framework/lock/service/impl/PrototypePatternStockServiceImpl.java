@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 库存业务 接口实现类
+ * 库存业务 接口实现类（多例模式）
  * （多例模式，注意和单例模式的区别）
  * <p>
  * 注意：当使用多例模式情况下，要保证 proxyMode 的值不为 ScopedProxyMode.DEFAULT(与ScopedProxyMode.NO等同)，

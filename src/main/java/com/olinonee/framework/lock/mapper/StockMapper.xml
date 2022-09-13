@@ -3,4 +3,11 @@
 <mapper namespace="com.olinonee.framework.lock.mapper.StockMapper">
 
 
+    <update id="updateStock">
+        UPDATE tb_stock
+        SET count = count - #{count}
+        WHERE
+            product_code = #{productCode}
+          AND count >= #{count}
+    </update>
 </mapper>

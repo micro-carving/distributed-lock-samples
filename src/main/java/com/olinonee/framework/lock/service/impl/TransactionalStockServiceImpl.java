@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 库存业务 接口实现类
+ * 库存业务 接口实现类（事务模式）
  * 基于 spring 事务来处理
  *
  * @author olinH, olinone666@gmail.com

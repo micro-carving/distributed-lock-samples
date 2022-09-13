@@ -29,3 +29,15 @@ Accept: application/json
 ### GET 减库存请求，基于 MySQL 数据库，使用 事务 + Reentrant 锁
 GET http://localhost:10010/stock/transactionalBaseMysqlDeductWithReentrantLock
 Accept: application/json
+
+### GET 减库存请求，基于 MySQL 数据库锁，单例模式
+GET http://localhost:10010/stock/mysqlSingletonPatternDbLock
+Accept: application/json
+
+### GET 减库存请求，基于 MySQL 数据库锁，多例模式
+GET http://localhost:10010/stock/mysqlPrototypePatternDbLock
+Accept: application/json
+
+### GET 减库存请求，基于 MySQL 数据库锁，事务模式
+GET http://localhost:10010/stock/mysqlTransactionalDbLock
+Accept: application/json
