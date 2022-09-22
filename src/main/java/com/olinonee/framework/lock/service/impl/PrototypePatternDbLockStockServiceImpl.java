@@ -27,7 +27,7 @@ public class PrototypePatternDbLockStockServiceImpl implements IPrototypePattern
     private final StockMapper stockMapper;
 
     /**
-     * 使用数据库锁（原子性，行锁或者表锁）减库存，避免jvm锁失效的问题，QPS为 951.837/sec。
+     * 使用数据库锁（原子性，行锁或者表锁）减库存，避免jvm锁失效的问题，QPS为 951.837/sec，有效解决超卖问题
      */
     @Override
     public void deductWithDbLock() {

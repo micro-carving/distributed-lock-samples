@@ -43,7 +43,7 @@ public class SingletonPatternStockServiceImpl implements ISingletonPatternStockS
     }
 
     /**
-     * 减库存（超卖问题），使用 synchronized 锁
+     * 减库存（超卖问题），使用 synchronized 锁，有效解决超卖问题
      */
     @Override
     public synchronized void deductWithSynchronizedLock() {
@@ -52,7 +52,7 @@ public class SingletonPatternStockServiceImpl implements ISingletonPatternStockS
     }
 
     /**
-     * 减库存（超卖问题），使用 ReentrantLock 锁
+     * 减库存（超卖问题），使用 ReentrantLock 锁，有效解决超卖问题
      */
     @Override
     public void deductWithReentrantLock() {
@@ -82,7 +82,7 @@ public class SingletonPatternStockServiceImpl implements ISingletonPatternStockS
     }
 
     /**
-     * 减库存（超卖问题），基于 MySQL 数据库，使用 synchronized 锁，QPS为 496.968/sec
+     * 减库存（超卖问题），基于 MySQL 数据库，使用 synchronized 锁，QPS为 496.968/sec，有效解决超卖问题
      */
     @Override
     public synchronized void baseMysqlDeductWithSynchronizedLock() {
@@ -98,7 +98,7 @@ public class SingletonPatternStockServiceImpl implements ISingletonPatternStockS
     }
 
     /**
-     * 减库存（超卖问题），基于 MySQL 数据库，使用 ReentrantLock 锁，QPS为 496.574/sec
+     * 减库存（超卖问题），基于 MySQL 数据库，使用 ReentrantLock 锁，QPS为 496.574/sec，有效解决超卖问题
      */
     @Override
     public void baseMysqlDeductWithReentrantLock() {

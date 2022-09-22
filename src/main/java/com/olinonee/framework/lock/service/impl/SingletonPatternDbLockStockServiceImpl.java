@@ -23,7 +23,7 @@ public class SingletonPatternDbLockStockServiceImpl implements ISingletonPattern
     private final StockMapper stockMapper;
 
     /**
-     * 使用数据库锁（原子性，行锁或者表锁）减库存，避免jvm锁失效的问题，QPS为 897.183/sec。
+     * 使用数据库锁（原子性，行锁或者表锁）减库存，避免jvm锁失效的问题，QPS为 897.183/sec，有效解决超卖问题
      */
     @Override
     public void deductWithDbLock() {

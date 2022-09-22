@@ -52,7 +52,7 @@ public class TransactionalStockServiceImpl implements ITransactionalStockService
     }
 
     /**
-     * 减库存（超卖问题），基于 MySQL 数据库，使用 事务 + ReentrantLock 锁，QPS为 814.7/sec，使用 spring 下的 “读未提交” 事务隔离级别来解决，并发失效的问题
+     * 减库存（超卖问题），基于 MySQL 数据库，使用 事务 + ReentrantLock 锁，QPS为 814.7/sec，使用 spring 下的 “读未提交” 事务隔离级别，来解决并发失效的问题
      * <p>
      * 注意：这里只在当前示例中这样使用，但是实际互联网项目中采用的是 “读已提交”（read committed 简称 rc）事务隔离级别
      */

@@ -24,7 +24,7 @@ public class TransactionalDbLockStockServiceImpl implements ITransactionalDbLock
     private final StockMapper stockMapper;
 
     /**
-     * 使用数据库锁（原子性，行锁或者表锁）减库存，避免jvm锁失效的问题，QPS为 869.565/sec。
+     * 使用数据库锁（原子性，行锁或者表锁）减库存，避免jvm锁失效的问题，QPS为 869.565/sec，有效解决超卖问题
      */
     @Override
     @Transactional
