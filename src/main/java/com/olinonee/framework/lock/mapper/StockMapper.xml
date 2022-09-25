@@ -10,4 +10,14 @@
             product_code = #{productCode}
           AND count >= #{count}
     </update>
+
+    <select id="queryStockForUpdate" resultType="com.olinonee.framework.lock.entity.Stock"
+            parameterType="java.lang.String">
+        SELECT
+            *
+        FROM
+            `tb_stock`
+        WHERE
+            product_code = #{productCode} FOR UPDATE
+    </select>
 </mapper>

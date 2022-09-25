@@ -13,4 +13,9 @@ public interface ITransactionalDbLockStockService {
      * 使用数据库锁（原子性，行锁或者表锁）减库存
      */
     void deductWithDbLock();
+
+    /**
+     * 使用 select ... for update 更新减库存，悲观锁（行级锁）
+     */
+    void deductWithDbLockForUpdate();
 }

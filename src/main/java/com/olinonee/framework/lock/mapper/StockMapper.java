@@ -5,6 +5,8 @@ import com.olinonee.framework.lock.entity.Stock;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 库存 mapper接口
  *
@@ -16,5 +18,7 @@ import org.apache.ibatis.annotations.Param;
 public interface StockMapper extends BaseMapper<Stock> {
 
     int updateStock(@Param("productCode") String productCode, @Param("count") Integer count);
+
+    List<Stock> queryStockForUpdate(@Param("productCode") String productCode);
 
 }

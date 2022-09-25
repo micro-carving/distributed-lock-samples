@@ -49,3 +49,7 @@ Accept: application/json
 ### GET 减库存请求，基于 MySQL 数据库锁，开启2个实例（一个端口号为10100，一个端口号为10086）作为集群，nginx 做均衡负载，访问端口80，有效解决超卖问题
 GET http://localhost:80/stock/mysqlSingletonPatternDbLock
 Accept: application/json
+
+### GET 减库存请求，基于 MySQL 数据库锁，事务模式，使用 SELECT ... FOR UPDATE 悲观锁，有效解决超卖问题
+GET http://localhost:10010/stock/mysqlTransactionalDbLockForUpdate
+Accept: application/json

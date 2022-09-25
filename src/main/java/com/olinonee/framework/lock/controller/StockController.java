@@ -91,4 +91,10 @@ public class StockController {
         this.transactionalDbLockStockService.deductWithDbLock();
         return "[mysqlTransactionalDbLock] - 已经成功执行减库存！！";
     }
+
+    @GetMapping("/mysqlTransactionalDbLockForUpdate")
+    public String mysqlTransactionalDbLockForUpdate() {
+        this.transactionalDbLockStockService.deductWithDbLockForUpdate();
+        return "[mysqlTransactionalDbLockForUpdate] - 已经成功执行减库存！！";
+    }
 }
