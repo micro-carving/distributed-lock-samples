@@ -53,3 +53,15 @@ Accept: application/json
 ### GET 减库存请求，基于 MySQL 数据库锁，事务模式，使用 SELECT ... FOR UPDATE 悲观锁，有效解决超卖问题
 GET http://localhost:10010/stock/mysqlTransactionalDbLockForUpdate
 Accept: application/json
+
+### GET 减库存请求，基于乐观锁（非注解模式），有效解决超卖问题
+GET http://localhost:10010/stock/optimisticLockStockDeductWithNonAnnotatedVersion
+Accept: application/json
+
+### GET 减库存请求，基于乐观锁（注解模式），有效解决超卖问题
+GET http://localhost:10010/stock/optimisticLockStockDeductWithAnnotatedVersion
+Accept: application/json
+
+### GET 减库存请求，基于乐观锁（注解模式），有效解决超卖问题
+GET http://localhost:10010/stock/optimisticLockStockDeductWithTimestamp
+Accept: application/json

@@ -25,6 +25,7 @@ public class StockController {
     private final IPrototypePatternDbLockStockService prototypePatternDbLockStockService; // 多例数据库锁
     private final ITransactionalDbLockStockService transactionalDbLockStockService; // 事务数据库锁
 
+    private final IOptimisticLockStockService optimisticLockStockService; // 乐观锁
 
     @GetMapping("/deductWithoutLock")
     public String deductWithoutLock() {
@@ -96,5 +97,23 @@ public class StockController {
     public String mysqlTransactionalDbLockForUpdate() {
         this.transactionalDbLockStockService.deductWithDbLockForUpdate();
         return "[mysqlTransactionalDbLockForUpdate] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/optimisticLockStockDeductWithNonAnnotatedVersion")
+    public String optimisticLockStockDeductWithNonAnnotatedVersion() {
+        this.optimisticLockStockService.deductWithNonAnnotatedVersion();
+        return "[optimisticLockStockDeductWithNonAnnotatedVersion] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/optimisticLockStockDeductWithAnnotatedVersion")
+    public String optimisticLockStockDeductWithAnnotatedVersion() {
+        this.optimisticLockStockService.deductWithAnnotatedVersion();
+        return "[optimisticLockStockDeductWithAnnotatedVersion] - 已经成功执行减库存！！";
+    }
+
+    @GetMapping("/optimisticLockStockDeductWithTimestamp")
+    public String optimisticLockStockDeductWithTimestamp() {
+        this.optimisticLockStockService.deductWithTimestamp();
+        return "[optimisticLockStockDeductWithTimestamp] - 已经成功执行减库存！！";
     }
 }

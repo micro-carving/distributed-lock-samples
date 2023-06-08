@@ -2,7 +2,11 @@ package com.olinonee.framework.lock.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
+import org.apache.ibatis.type.JdbcType;
+
+import java.sql.Timestamp;
 
 /**
  * 库存
@@ -23,4 +27,10 @@ public class Stock {
     private String productCode;
     private String warehouse;
     private Integer count;
+    // @Version
+    private Integer version;
+
+    @Version
+    @TableField(value = "gmt_modified", jdbcType = JdbcType.TIMESTAMP)
+    private Timestamp gmtModified;
 }
